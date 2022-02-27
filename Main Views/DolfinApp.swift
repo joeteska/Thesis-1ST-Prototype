@@ -6,15 +6,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct DolfinApp: App {
-    
-    let cdm = CoreDataManager()
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
         }
     }
 }
