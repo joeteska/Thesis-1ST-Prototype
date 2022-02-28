@@ -18,6 +18,7 @@ struct ProfileView: View {
     @State private var myColor = Color(red: 0.997, green: 0.383, blue: 0.405)
     @State var userProgress = ""
     @State var userGoal = ""
+    @State var userTask = ""
     @State var userTaskCompleted: CGFloat = 3
     @State var userTaskToComplete: CGFloat = 10
     @State var userTaskMoney: CGFloat = 400
@@ -35,6 +36,14 @@ struct ProfileView: View {
         }
         return 0.0
     }
+    
+    var userTaskCGFloat: CGFloat{
+        if let n = NumberFormatter().number(from: userTask) {
+            return CGFloat(truncating: n)
+        }
+        return 0.0
+    }
+
 
 
 
@@ -128,7 +137,7 @@ NavigationView {
                 VStack(alignment: .center){
                 
                 Text("Collected")
-                Text("$\(userTaskMoney, specifier: "%.0f")")
+                Text("$\(userTask)")
                 .font(.custom("Poppins-SemiBold", size: 35, relativeTo: .body))
 
                 }
@@ -138,6 +147,8 @@ NavigationView {
                 }
                 Spacer()
                     .frame(height: 30)
+          /*
+                
             HStack{
                 ZStack(alignment: .center) {
                 Circle()
@@ -181,6 +192,7 @@ NavigationView {
                     
                 }
                 
+                */
             }
             
            
@@ -246,6 +258,10 @@ NavigationView {
         
         userProgress = progressAndTotal.0
         userGoal = progressAndTotal.1
+        
+        let getTotalTask = CoreDataManager.shared.getTotalTask()
+        
+        userTask = getTotalTask
     }
     
    /* .toolbar {
@@ -269,9 +285,6 @@ NavigationView {
         }
     }
 }
-
-
-
 
 
 struct NewProfileView_Previews: PreviewProvider {

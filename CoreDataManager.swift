@@ -36,17 +36,8 @@ class CoreDataManager {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
+     
     func saveGoal(id: UUID, name: String, color: String, progress: String, goal: String, emoji: String) {
         let myGoal = Goals(context: persistentContainer.viewContext)
         myGoal.id = id
@@ -98,13 +89,18 @@ class CoreDataManager {
         return (String(totalProgressAmount), String(totalGoalAmount))
     }
     
-    
-    
-    
-    
-    
-    
-    
+    func getTotalTask() -> (String) {
+        
+        let tasks = getAllTasks()
+        var totalTaskAmount = 0
+        
+        for task in tasks {
+            
+            totalTaskAmount += Int(task.task ?? "")!
+        }
+        return(String(totalTaskAmount))
+    }
+     
     
     func saveTask(id: UUID, name: String, color: String, task: String, emoji: String) {
         let myTask = Tasks(context: persistentContainer.viewContext)

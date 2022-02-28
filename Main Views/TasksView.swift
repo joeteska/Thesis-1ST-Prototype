@@ -16,7 +16,7 @@ struct TasksView : View {
     @FetchRequest(
         entity: Tasks.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Tasks.name, ascending: false)
+            NSSortDescriptor(keyPath: \Tasks.name, ascending: true)
         ]
     ) var tasks: FetchedResults<Tasks>
     
@@ -108,8 +108,8 @@ struct AddTaskView: View {
     @State private var selectedColorIndex = 0
     @State var showSheetView = false
     @State var addTaskName: String = "task name"
-    @State var colorSelection: String = "red"
-    @State var addEmoji: String = "🚀"
+    @State var colorSelection: String = "orange"
+    @State var addEmoji: String = "🐶"
     @State private var taskBudget: String = "10"
     @State var isEmpty = false
     @State var speed = 0.0

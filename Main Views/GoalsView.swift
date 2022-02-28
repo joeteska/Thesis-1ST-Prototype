@@ -16,7 +16,7 @@ struct GoalsView : View {
     @FetchRequest(
         entity: Goals.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Goals.name, ascending: false)
+         //   NSSortDescriptor(keyPath: \Goals.name, ascending: false)
         ]
     ) var goals: FetchedResults<Goals>
     
@@ -47,7 +47,7 @@ struct GoalsView : View {
                 
                 else{
                     List {
-                        ForEach(goals.reversed(), id: \.id) { goal in
+                        ForEach(goals, id: \.id) { goal in
                             GoalListRowView(name: goal.name ?? "", progress: goal.progress ?? "", goal: goal.goal ?? "", emoji: goal.emoji ?? "", color: goal.color ?? "red")
                         }
                         
@@ -254,6 +254,7 @@ struct GoalListRowView: View {
                     .foregroundColor(.white)
                     .font(Font.custom("Poppins", size: 20))
                     .frame(maxWidth: .infinity, alignment: .leading)
+
                 
                 Spacer()
                     .frame(height: 15)
@@ -266,8 +267,8 @@ struct GoalListRowView: View {
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins", size: 20))
                 }
-                .offset(x: -50)
-  
+                .frame(maxWidth: .infinity, alignment: .leading)
+
                 
                 Spacer()
                     .frame(height: 15)
@@ -281,7 +282,6 @@ struct GoalListRowView: View {
                     RoundedRectangle(cornerRadius: 30)
                         .frame(width: 100, height: 20)
                         .foregroundColor(Color(.white))
-
 
                 }
                 
