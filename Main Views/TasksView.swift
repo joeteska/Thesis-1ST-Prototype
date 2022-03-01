@@ -14,55 +14,126 @@ import CoreData
 struct TasksView : View {
     
     @FetchRequest(
-        entity: Tasks.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Tasks.name, ascending: true)
-        ]
+            NSSortDescriptor(keyPath: \Tasks.date, ascending: false)
+
+        ],
+        predicate: NSPredicate(format: "completed == false")
     ) var tasks: FetchedResults<Tasks>
     
+    @FetchRequest(
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Tasks.date, ascending: false)
+
+        ],
+        predicate: NSPredicate(format: "completed == true")
+    ) var completedTasks: FetchedResults<Tasks>
     
     
+    @State var showCompleted = false
     @State var myColor = Color(red: 0.997, green: 0.383, blue: 0.405) //tint color
     @State var addTask = false
     
     var body: some View {
         NavigationView {
             VStack {
-                if (tasks.isEmpty){
-                    Text("✏️")
-                        .font(.system(size: 60))
-                        .opacity(0.3)
+                
+                Spacer()
+                    .frame(height: 20)
+                
+                HStack{
+                    Button {
+                        showCompleted = false
+                    } label: {
+                        Text("Active")
+                    }
                     Spacer()
-                        .frame(height: 10)
-                    Text("No Active Tasks")
-                        .font(.system(size: 22))
-                        .foregroundColor(.gray)
-                        .opacity(0.3)
-                    Text("Create a Task by clicking the + button at the top of the screen")
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .opacity(0.3)
-                        .padding(.vertical, 1.0)
-                        .padding(.horizontal, 80)
+                        .frame(width: 200)
+                    Button {
+                        showCompleted = true
+                    } label: {
+                        Text("Completed")
+                    }
+
+                } .padding(.horizontal)
+                
+                Spacer()
+                
+                if !showCompleted{
+                    if (tasks.isEmpty){
+                        Text("✏️")
+                            .font(.system(size: 60))
+                            .opacity(0.3)
+                        Spacer()
+                            .frame(height: 10)
+                        Text("No Active Tasks")
+                            .font(.system(size: 22))
+                            .foregroundColor(.gray)
+                            .opacity(0.3)
+                        Text("")
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .opacity(0.3)
+                            .padding(.vertical, 1.0)
+                            .padding(.horizontal, 80)
+                        Spacer()
+
+                    }
+                    
+                    else{
+                        List {
+                            ForEach(tasks, id: \.id) { task in
+                                TaskListRowView(task: task)
+                                   
+                            }
+                            
+                            .onDelete{ indexSet in
+                                deleteItemInActive(at: indexSet)
+                            }
+                            .onMove { (indexSet, index) in
+                                //self.$goals.move(fromOffsets: indexSet, toOffset: index)
+                            }
+                            
+                            
+                        }
+                        .listStyle(PlainListStyle())
+                    }
                 }
                 
                 else{
-                    List {
-                        ForEach(tasks.reversed(), id: \.id) { task in
-                            TaskListRowView(name: task.name ?? "", task: task.task ?? "", emoji: task.emoji ?? "", color: task.color ?? "red")
-                        }
-                        
-                        .onDelete{ indexSet in
-                            deleteTaskInList(at: indexSet)
-                        }
-                        .onMove { (indexSet, index) in
-                            //self.$goals.move(fromOffsets: indexSet, toOffset: index)
-                        }
-                        
-                        
+                    if (completedTasks.isEmpty){
+                        Text("🙈")
+                            .font(.system(size: 60))
+                            .opacity(0.3)
+                        Spacer()
+                            .frame(height: 10)
+                        Text("No Complete Tasks")
+                            .font(.system(size: 22))
+                            .foregroundColor(.gray)
+                            .opacity(0.3)
+                        Spacer()
+
                     }
-                    .listStyle(PlainListStyle())
+                    
+                    else{
+                        List {
+                            ForEach(completedTasks, id: \.id) { task in
+                                TaskListRowView(task: task)
+                            }
+                            
+                            .onDelete{ indexSet in
+                                deleteItemInCompleted(at: indexSet)
+                            }
+                            .onMove { (indexSet, index) in
+                                //self.$goals.move(fromOffsets: indexSet, toOffset: index)
+                            }
+                            
+                            
+                        }
+                        .listStyle(PlainListStyle())
+                    }
                 }
+                
             }
             
             .navigationBarTitle(Text("Tasks ✏️"))
@@ -82,9 +153,17 @@ struct TasksView : View {
         
     }
 
-    private func deleteTaskInList(at offsets: IndexSet) {
+    private func deleteItemInActive(at offsets: IndexSet) {
         for index in offsets {
             let task = tasks[index]
+            CoreDataManager.shared.persistentContainer.viewContext.delete(task)
+            CoreDataManager.shared.saveContext()
+        }
+    }
+    
+    private func deleteItemInCompleted(at offsets: IndexSet) {
+        for index in offsets {
+            let task = completedTasks[index]
             CoreDataManager.shared.persistentContainer.viewContext.delete(task)
             CoreDataManager.shared.saveContext()
         }
@@ -195,7 +274,7 @@ struct AddTaskView: View {
                 // variables for when then add another item.
                 Button(action: {
                     // save goal to core data
-                    CoreDataManager.shared.saveTask(id: UUID(), name: addTaskName, color: colorSelection, task: taskBudget, emoji: addEmoji)
+                    CoreDataManager.shared.saveTask(id: UUID(), name: addTaskName, color: colorSelection, task: taskBudget, emoji: addEmoji, completed: false, date: Date())
                     
                     // This will close our sheet view when the user click our Add button.
                     self.addTask.toggle()
@@ -212,7 +291,7 @@ struct AddTaskView: View {
                 })
             }.padding(100)
             
-                .frame(width: 330, height: 650)
+                .frame(width: 330, height: 550)
                 .background(.white)
                 .cornerRadius(15)
                 .shadow(radius: 25)
@@ -224,15 +303,12 @@ struct AddTaskView: View {
 
 struct TaskListRowView: View {
     
-    let name: String
-    let task: String
-    let emoji: String
-    let color: String
+    let task: Tasks
     
     var body: some View {
         HStack {
             VStack{
-                Text(name)
+                Text(task.name ?? "")
                     .foregroundColor(.white)
                     .font(Font.custom("Poppins", size: 20))
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -244,13 +320,47 @@ struct TaskListRowView: View {
                     Text("$")
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins", size: 20))
-                    Text("\(task)")
+                    Text(task.task ?? "")
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins", size: 20))
                 }
                 
                 .frame(maxWidth: .infinity, alignment: .leading)
+                
+        Group {
+                
+                if !task.completed{
+                    Button {
+                        task.completed = true
+                        CoreDataManager.shared.saveContext()
+                    } label: {
+                        Image(systemName: "checkmark.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                else{
+                    Button {
+                        task.completed = false
+                        CoreDataManager.shared.saveContext()
+                    } label: {
+                        Image(systemName: "arrowshape.turn.up.backward.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                        
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                    }
+                }
             }
+            
+           
             
             .padding()
             
@@ -262,18 +372,15 @@ struct TaskListRowView: View {
                     .frame(width: 100, height: 100)
                     .shadow(radius: 2)
                 
-                Text(emoji)
+                Text(task.emoji ?? "")
                     .font(.system(size: 45))
                 
                 
             }
             .padding()
-            
-            
-            
         }
         .frame(height: 160)
-        .background(Color(color))
+        .background(Color(task.color ?? "red"))
         .cornerRadius(20)
         .listRowSeparator(.hidden)
         .padding(.top)

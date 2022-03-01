@@ -16,7 +16,7 @@ struct GoalsView : View {
     @FetchRequest(
         entity: Goals.entity(),
         sortDescriptors: [
-         //   NSSortDescriptor(keyPath: \Goals.name, ascending: false)
+         NSSortDescriptor(keyPath: \Goals.date, ascending: false)
         ]
     ) var goals: FetchedResults<Goals>
     
@@ -209,7 +209,7 @@ struct AddGoalView: View {
                 // variables for when then add another item.
                 Button(action: {
                     // save goal to core data
-                    CoreDataManager.shared.saveGoal(id: UUID(), name: addGoalName, color: colorSelection, progress: String(Int(goalProgress)), goal: goalBudget, emoji: addEmoji)
+                    CoreDataManager.shared.saveGoal(id: UUID(), name: addGoalName, color: colorSelection, progress: String(Int(goalProgress)), goal: goalBudget, emoji: addEmoji, date: Date())
                     
                     // This will close our sheet view when the user click our Add button.
                     self.addGoal.toggle()
@@ -247,6 +247,20 @@ struct GoalListRowView: View {
     let emoji: String
     let color: String
     
+    var userProgressCGFloat: CGFloat{
+        if let n = NumberFormatter().number(from: progress) {
+            return CGFloat(truncating: n)
+        }
+        return 0.0
+    }
+    
+    var userGoalCGFloat: CGFloat{
+        if let n = NumberFormatter().number(from: goal) {
+            return CGFloat(truncating: n)
+        }
+        return 0.0
+    }
+    
     var body: some View {
         HStack {
             VStack{
@@ -260,33 +274,37 @@ struct GoalListRowView: View {
                     .frame(height: 15)
                 
                 HStack{
-                    Text("$")
+                   
+                    Text("$\(progress)/\(goal)")
                         .foregroundColor(.white)
-                        .font(Font.custom("Poppins", size: 20))
-                    Text("\(progress)/\(goal)")
-                        .foregroundColor(.white)
-                        .font(Font.custom("Poppins", size: 20))
+                        .font(Font.custom("Poppins", size: 15))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 
                 Spacer()
-                    .frame(height: 15)
+                    .frame(height: 10)
                 
                 
                 ZStack(alignment: .leading){
                     
                     RoundedRectangle(cornerRadius: 30)
-                        .frame(width: 130, height: 20)
-                        .foregroundColor(Color(.gray))
-                    RoundedRectangle(cornerRadius: 30)
-                        .frame(width: 100, height: 20)
-                        .foregroundColor(Color(.white))
+                        .frame(width: 120, height: 15)
+                        .foregroundColor(Color(color))
+                        .brightness(-0.1)
+                    
+                    if userGoalCGFloat != 0.0{
+                        RoundedRectangle(cornerRadius: 30)
+                            .frame(width: 120*(userProgressCGFloat/userGoalCGFloat), height: 15)
+                            .foregroundColor(Color(.white))
+                    }
+                    
 
                 }
                 
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .padding(.leading, 30)
             
             .padding()
             
@@ -303,6 +321,7 @@ struct GoalListRowView: View {
                 
                 
             }
+            .padding(.trailing, 10)
             .padding()
             
             

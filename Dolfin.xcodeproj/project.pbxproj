@@ -32,6 +32,7 @@
 		6F635D0227A347570092271E /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F635D0127A347570092271E /* NewTaskView.swift */; };
 		6F6D825827BD4F5400ED9CBA /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F30F65A2788109B00588D29 /* Poppins-SemiBold.ttf */; };
 		6F6D825927BD4F5800ED9CBA /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F30F65A2788109B00588D29 /* Poppins-SemiBold.ttf */; };
+		6F6E500E27CD854200C2FA33 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E500D27CD854200C2FA33 /* SwiftUIView.swift */; };
 		6F92EB4C27C67CF400680743 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F92EB4A27C67CF400680743 /* DataModel.xcdatamodeld */; };
 		6F92EB4E27C67E8A00680743 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F92EB4D27C67E8A00680743 /* CoreDataManager.swift */; };
 		6FD4973A277C82E5005E01CE /* DolfinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD49739277C82E5005E01CE /* DolfinApp.swift */; };
@@ -84,6 +85,7 @@
 		6F54447D27CBE20C0041D30B /* ProfileSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettings.swift; sourceTree = "<group>"; };
 		6F54447F27CC1F760041D30B /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		6F635D0127A347570092271E /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
+		6F6E500D27CD854200C2FA33 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		6F92EB4B27C67CF400680743 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		6F92EB4D27C67E8A00680743 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6FD49736277C82E5005E01CE /* Dolfin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dolfin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 				6FD4979B27802055005E01CE /* GoalsView.swift */,
 				6F54447F27CC1F760041D30B /* TasksView.swift */,
 				6FD4979F27802070005E01CE /* VaultsView.swift */,
+				6F6E500D27CD854200C2FA33 /* SwiftUIView.swift */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			files = (
 				6F30F67627887F2300588D29 /* LogInView.swift in Sources */,
 				6FD4973C277C82E5005E01CE /* ContentView.swift in Sources */,
+				6F6E500E27CD854200C2FA33 /* SwiftUIView.swift in Sources */,
 				6F1BCEF027A2CB67007162E8 /* SignUpView.swift in Sources */,
 				6FD4973A277C82E5005E01CE /* DolfinApp.swift in Sources */,
 				6F92EB4C27C67CF400680743 /* DataModel.xcdatamodeld in Sources */,

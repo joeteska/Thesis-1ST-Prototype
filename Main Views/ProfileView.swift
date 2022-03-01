@@ -22,6 +22,8 @@ struct ProfileView: View {
     @State var userTaskCompleted: CGFloat = 3
     @State var userTaskToComplete: CGFloat = 10
     @State var userTaskMoney: CGFloat = 400
+    @State var activeAndCompletedTasks = ("0", "0")
+    
     
     var userProgressCGFloat: CGFloat{
         if let n = NumberFormatter().number(from: userProgress) {
@@ -43,6 +45,10 @@ struct ProfileView: View {
         }
         return 0.0
     }
+    
+    /*var activeAndCompletedTasks: (String, String){
+        CoreDataManager.shared.getCompletedTasks()
+    }*/
 
 
 
@@ -81,6 +87,7 @@ NavigationView {
                 Text("Your Goal")
                     Text("$\(userGoal)")
                 .font(.custom("Poppins-SemiBold", size: 30, relativeTo: .body))
+                    
 
                 }
                 .foregroundColor(.white)
@@ -90,16 +97,18 @@ NavigationView {
                 Spacer()
                     .frame(height: 15)
                 ZStack(alignment: .leading) {
+                    
                 RoundedRectangle(cornerRadius: 20)
                 .frame(width: 270, height: 20)
                 .foregroundColor(Color(hue: 0.001, saturation: 0.596, brightness: 0.82))
                 
-                    
-                RoundedRectangle(cornerRadius: 20)
-                    .frame(width: 270*(userProgressCGFloat/userGoalCGFloat), height: 20)
-                    .foregroundColor(.white)
                 
+                if userGoalCGFloat != 0.0{
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 270*(userProgressCGFloat/userGoalCGFloat), height: 20)
+                            .foregroundColor(.white)
                     
+                }
                 }
             }
             
@@ -122,7 +131,8 @@ NavigationView {
                 VStack(alignment: .center){
                 
                 Text("Completed")
-                Text("\(userTaskCompleted, specifier: "%.0f")/\(userTaskToComplete, specifier: "%.0f")")           .font(.custom("Poppins-SemiBold", size: 35, relativeTo: .body))
+                    Text("\(activeAndCompletedTasks.0)/\(activeAndCompletedTasks.1)")
+                        .font(.custom("Poppins-SemiBold", size: 35, relativeTo: .body))
                     
                 }
                 
@@ -145,8 +155,7 @@ NavigationView {
                 .padding([ .leading, .trailing])
                 
                 }
-                Spacer()
-                    .frame(height: 30)
+             
           /*
                 
             HStack{
@@ -197,13 +206,12 @@ NavigationView {
             
            
         }
-        .frame(width: 310.0, height: 250)
+        .frame(width: 310.0, height: 140)
         .padding([.leading, .trailing])
         .background(Color(red: 0.997, green: 0.592, blue: 0.378))
         .cornerRadius(15)
-        
         Spacer()
-            .frame(height: 30)
+      
         
         /*
         
@@ -262,6 +270,9 @@ NavigationView {
         let getTotalTask = CoreDataManager.shared.getTotalTask()
         
         userTask = getTotalTask
+        
+        activeAndCompletedTasks = CoreDataManager.shared.getCompletedTasks()
+        
     }
     
    /* .toolbar {

@@ -38,7 +38,7 @@ class CoreDataManager {
     }
  
      
-    func saveGoal(id: UUID, name: String, color: String, progress: String, goal: String, emoji: String) {
+    func saveGoal(id: UUID, name: String, color: String, progress: String, goal: String, emoji: String, date: Date) {
         let myGoal = Goals(context: persistentContainer.viewContext)
         myGoal.id = id
         myGoal.name = name
@@ -46,6 +46,7 @@ class CoreDataManager {
         myGoal.progress = progress
         myGoal.goal = goal
         myGoal.emoji = emoji
+        myGoal.date = date
         saveContext()
     }
     
@@ -95,20 +96,24 @@ class CoreDataManager {
         var totalTaskAmount = 0
         
         for task in tasks {
+            if task.completed{
+                totalTaskAmount += Int(task.task ?? "") ?? 0
+            }
             
-            totalTaskAmount += Int(task.task ?? "")!
         }
         return(String(totalTaskAmount))
     }
      
     
-    func saveTask(id: UUID, name: String, color: String, task: String, emoji: String) {
+    func saveTask(id: UUID, name: String, color: String, task: String, emoji: String, completed: Bool, date: Date) {
         let myTask = Tasks(context: persistentContainer.viewContext)
         myTask.id = id
         myTask.name = name
         myTask.color = color
         myTask.task = task
         myTask.emoji = emoji
+        myTask.completed = completed
+        myTask.date = date
         saveContext()
     }
     
@@ -137,6 +142,23 @@ class CoreDataManager {
         saveContext()
     }
     
-    
+    func getCompletedTasks() -> (String,String){
+        
+        let tasks = getAllTasks()
+        
+        var completedTasks = 0
+        
+        for task in tasks {
+            
+            if task.completed{
+                
+                completedTasks += 1
+                
+            } 
+        }
+        print(String(completedTasks), String(tasks.count))
+        return (String(completedTasks), String(tasks.count))
+
+    }
 }
 
