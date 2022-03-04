@@ -63,19 +63,20 @@ struct TasksView : View {
                     if (tasks.isEmpty){
                         Text("✏️")
                             .font(.system(size: 60))
-                            .opacity(0.3)
+                            .opacity(0.5)
                         Spacer()
                             .frame(height: 10)
                         Text("No Active Tasks")
                             .font(.system(size: 22))
                             .foregroundColor(.gray)
                             .opacity(0.3)
-                        Text("")
+                        Text("Create a Task by clicking the + button at the top of the screen")
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .opacity(0.3)
                             .padding(.vertical, 1.0)
                             .padding(.horizontal, 80)
+                            .lineSpacing(5)
                         Spacer()
 
                     }
@@ -90,9 +91,7 @@ struct TasksView : View {
                             .onDelete{ indexSet in
                                 deleteItemInActive(at: indexSet)
                             }
-                            .onMove { (indexSet, index) in
-                                //self.$goals.move(fromOffsets: indexSet, toOffset: index)
-                            }
+                           
                             
                             
                         }
@@ -104,10 +103,10 @@ struct TasksView : View {
                     if (completedTasks.isEmpty){
                         Text("🙈")
                             .font(.system(size: 60))
-                            .opacity(0.3)
+                            .opacity(0.5)
                         Spacer()
                             .frame(height: 10)
-                        Text("No Complete Tasks")
+                        Text("Oops there's nothing here")
                             .font(.system(size: 22))
                             .foregroundColor(.gray)
                             .opacity(0.3)
@@ -124,11 +123,7 @@ struct TasksView : View {
                             .onDelete{ indexSet in
                                 deleteItemInCompleted(at: indexSet)
                             }
-                            .onMove { (indexSet, index) in
-                                //self.$goals.move(fromOffsets: indexSet, toOffset: index)
-                            }
-                            
-                            
+                       
                         }
                         .listStyle(PlainListStyle())
                     }
@@ -179,9 +174,6 @@ struct TaskModel: Hashable {
     let budget: String
 }
 
-
-
-
 struct AddTaskView: View {
     
     @State private var selectedColorIndex = 0
@@ -195,8 +187,8 @@ struct AddTaskView: View {
     @State private var isEditing = false
     @Binding var addTask: Bool
     
-    let colors = [ "red", "green", "blue", "yellow","darkBlue", "orange"]
-    
+    let colors = [ "red", "orange", "yellow", "green","blue", "darkBlue"]
+
     var body: some View {
         ZStack{
             
@@ -213,7 +205,7 @@ struct AddTaskView: View {
                 
                 Text("Task Name: ")
                     .foregroundColor(.gray)
-                TextField("name", text: self.$addTaskName.max(20))
+                TextField("name", text: self.$addTaskName.max(18))
                     .foregroundColor(Color(colorSelection))
                     .font(.system(size: 30))
                     .frame(width: 300)
@@ -314,55 +306,56 @@ struct TaskListRowView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Spacer()
-                    .frame(height: 20)
+                    .frame(height: 10)
                 
                 HStack{
-                    Text("$")
+                  
+                    Text("$\(task.task ?? "")")
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins", size: 20))
-                    Text(task.task ?? "")
-                        .foregroundColor(.white)
-                        .font(Font.custom("Poppins", size: 20))
+                    Spacer()
+                        .frame(width: 25)
+                    Group {
+                            
+                            if !task.completed{
+                                Button {
+                                    task.completed = true
+                                    CoreDataManager.shared.saveContext()
+                                } label: {
+                                    Image(systemName: "checkmark.circle")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .foregroundColor(.white)
+                                }
+                                .buttonStyle(BorderlessButtonStyle())
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            else{
+                                Button {
+                                    task.completed = false
+                                    CoreDataManager.shared.saveContext()
+                                } label: {
+                                    Image(systemName: "arrowshape.turn.up.backward.circle")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .foregroundColor(.white)
+                                    
+                                }
+                                .buttonStyle(BorderlessButtonStyle())
+                                .frame(maxWidth: .infinity, alignment: .leading)
+
+                                }
+                            }
                 }
                 
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-        Group {
-                
-                if !task.completed{
-                    Button {
-                        task.completed = true
-                        CoreDataManager.shared.saveContext()
-                    } label: {
-                        Image(systemName: "checkmark.circle.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
-                    }
-                    .buttonStyle(BorderlessButtonStyle())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                else{
-                    Button {
-                        task.completed = false
-                        CoreDataManager.shared.saveContext()
-                    } label: {
-                        Image(systemName: "arrowshape.turn.up.backward.circle")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
-                        
-                    }
-                    .buttonStyle(BorderlessButtonStyle())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                    }
-                }
+    
             }
             
            
-            
-            .padding()
+       
+            .padding(.horizontal, 30)
             
             Spacer()
             
@@ -377,7 +370,7 @@ struct TaskListRowView: View {
                 
                 
             }
-            .padding()
+            .padding(.trailing)
         }
         .frame(height: 160)
         .background(Color(task.color ?? "red"))

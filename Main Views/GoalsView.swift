@@ -23,14 +23,18 @@ struct GoalsView : View {
 
     @State var myColor = Color(red: 0.997, green: 0.383, blue: 0.405) //tint color
     @State var addGoal = false
+    //let columns: [GridItem] = GoalListRowView(goal)
+
     
     var body: some View {
+    
+        
         NavigationView {
             VStack {
                 if (goals.isEmpty){
                     Text("🚀")
                         .font(.system(size: 60))
-                        .opacity(0.1)
+                        .opacity(0.5)
                     Spacer()
                         .frame(height: 10)
                     Text("No Active Goals")
@@ -43,10 +47,13 @@ struct GoalsView : View {
                         .opacity(0.3)
                         .padding(.vertical, 1.0)
                         .padding(.horizontal, 80)
+                        .lineSpacing(5)
+                    
                 }
                 
                 else{
                     List {
+                        
                         ForEach(goals, id: \.id) { goal in
                             GoalListRowView(name: goal.name ?? "", progress: goal.progress ?? "", goal: goal.goal ?? "", emoji: goal.emoji ?? "", color: goal.color ?? "red")
                         }
@@ -54,11 +61,7 @@ struct GoalsView : View {
                         .onDelete{ indexSet in
                             deleteGoalInList(at: indexSet)
                         }
-                        .onMove { (indexSet, index) in
-                            //self.$goals.move(fromOffsets: indexSet, toOffset: index)
-                        }
-                        
-                        
+                       
                     }
                     .listStyle(PlainListStyle())
                 }
@@ -99,9 +102,6 @@ struct GoalModel: Hashable {
     let budget: String
 }
 
-
-
-
 struct AddGoalView: View {
     
     @State var goalProgress: Double = 10.0
@@ -115,7 +115,7 @@ struct AddGoalView: View {
     @State private var goalBudget: String = "10"
    
     
-    let colors = [ "red", "green", "blue", "yellow","darkBlue", "orange"]
+    let colors = [ "red", "orange", "yellow", "green","blue", "darkBlue"]
     
     var body: some View {
         ZStack{
@@ -267,7 +267,7 @@ struct GoalListRowView: View {
                 Text(name)
                     .foregroundColor(.white)
                     .font(Font.custom("Poppins", size: 20))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .center)
 
                 
                 Spacer()
@@ -278,8 +278,10 @@ struct GoalListRowView: View {
                     Text("$\(progress)/\(goal)")
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins", size: 15))
+                        .offset(x: 30)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+
 
                 
                 Spacer()
@@ -302,9 +304,8 @@ struct GoalListRowView: View {
 
                 }
                 
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .center)
             }
-            .padding(.leading, 30)
             
             .padding()
             

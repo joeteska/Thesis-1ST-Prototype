@@ -45,6 +45,8 @@ struct ContentView: View {
 
                     Text("Tasks")
                 }
+            
+            /*
             VaultsView()
                 .tabItem {
                     Image(systemName: "point.3.connected.trianglepath.dotted")
@@ -52,8 +54,9 @@ struct ContentView: View {
 
                     Text("Vaults")
                 }
-            
+            */
            
+            
             
             }
         .accentColor(myColor)

@@ -40,8 +40,8 @@ struct VaultsView : View {
                 
                 if (listVaults.isEmpty) {
                     
-                    Text("💸")
-                        .font(.system(size: 60))
+                    Text("🏦")
+                        .font(.system(size: 50))
                         .opacity(0.3)
                     Spacer()
                         .frame(height: 10)
@@ -131,7 +131,7 @@ struct VaultsView : View {
           
             }
             
-            .navigationBarTitle(Text("Vaults 💸"))
+            .navigationBarTitle(Text("Vaults 🏦"))
             .navigationBarItems(trailing:
                 Button(action: {
                     self.addVault.toggle()
