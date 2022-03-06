@@ -74,6 +74,10 @@ class CoreDataManager {
         }
         saveContext()
     }
+
+    func updateGoal(progress: String, name: String, color: String, emoji: String, goal: String){
+        
+    }
     
     //progress tab for profile view - goals
     
