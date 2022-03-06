@@ -192,10 +192,21 @@ struct AddGoalView: View {
                         Button {
                             colorSelection = color
                         } label: {
+                            ZStack{
                             Circle()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color(color))
+                            
+                        if colorSelection == color {
+                            Circle()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(.white)
+                                
+                                }
+                            }
+                            
                         }
+                        
                         Spacer()
                     }
                     
@@ -275,7 +286,7 @@ struct GoalListRowView: View {
                 
                 HStack{
                    
-                    Text("$\(progress)/\(goal)")
+                    Text("$\(progress)/$\(goal)")
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins", size: 15))
                         .offset(x: 30)

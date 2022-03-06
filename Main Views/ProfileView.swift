@@ -19,10 +19,12 @@ struct ProfileView: View {
     @State var userProgress = ""
     @State var userGoal = ""
     @State var userTask = ""
+    @State var userTotal = ""
     @State var userTaskCompleted: CGFloat = 3
     @State var userTaskToComplete: CGFloat = 10
     @State var userTaskMoney: CGFloat = 400
     @State var activeAndCompletedTasks = ("0", "0")
+
     
     
     var userProgressCGFloat: CGFloat{
@@ -46,19 +48,67 @@ struct ProfileView: View {
         return 0.0
     }
     
+    var activeAndCompleteTasksCGFloat0: CGFloat{
+        if let n = NumberFormatter().number(from: activeAndCompletedTasks.0) {
+            return CGFloat(truncating: n)
+        }
+        return 0.0
+    }
+    
+    var activeAndCompleteTasksCGFloat1: CGFloat{
+        if let n = NumberFormatter().number(from: activeAndCompletedTasks.1) {
+            return CGFloat(truncating: n)
+        }
+        return 0.0
+    }
+    
+    
+   
+    
     /*var activeAndCompletedTasks: (String, String){
         CoreDataManager.shared.getCompletedTasks()
     }*/
-
-
-
-
+    
+  
 var body: some View {
+    
+    
 NavigationView {
     ScrollView(showsIndicators: false) {
 
         Spacer()
             .frame(height: 60)
+        
+        HStack {
+            
+        VStack{
+                            
+            HStack {
+        
+
+                VStack(alignment: .center){
+                
+                Text("Total")
+                Text("$\(userTaskCGFloat+userProgressCGFloat, specifier: "%.0f")")
+                .font(.custom("Poppins-SemiBold", size: 35, relativeTo: .body))
+
+                }
+                .foregroundColor(.white)
+                .padding([ .leading, .trailing])
+                
+                }
+             
+            }
+            
+           
+        }
+        .frame(width: 310.0, height: 140)
+        .padding([.leading, .trailing])
+        .background(Color(red: 0.293, green: 0.771, blue: 1.006))
+        .cornerRadius(15)
+        
+        Spacer()
+            .frame(height: 30)
         
         HStack {
             
@@ -70,23 +120,26 @@ NavigationView {
                 
                 Text("Your Progress")
                 Text("$\(userProgress)")
-                        .font(.custom("Poppins-SemiBold", size: 30, relativeTo: .body))
+                        .font(.custom("Poppins-SemiBold", size: 25, relativeTo: .body))
                     
                 }
                 
                 .foregroundColor(.white)
                 .padding([ .leading, .trailing])
                 
-            Capsule()
+
+                Capsule()
                 .frame(width: 7, height: 60)
                 .foregroundColor(.white)
-                
+
 
                 VStack(alignment: .center){
                 
                 Text("Your Goal")
+                        .padding([ .leading, .trailing])
+
                     Text("$\(userGoal)")
-                .font(.custom("Poppins-SemiBold", size: 30, relativeTo: .body))
+                .font(.custom("Poppins-SemiBold", size: 25, relativeTo: .body))
                     
 
                 }
@@ -94,6 +147,7 @@ NavigationView {
                 .padding([ .leading, .trailing])
                 
                 }
+                
                 Spacer()
                     .frame(height: 15)
                 ZStack(alignment: .leading) {
@@ -114,7 +168,7 @@ NavigationView {
             
            
         }
-        .frame(width: 310.0, height: 170)
+        .frame(width: 310.0, height: 150)
         .padding([.leading, .trailing])
         .background(myColor)
         .cornerRadius(15)
@@ -127,15 +181,16 @@ NavigationView {
             VStack{
                             
             HStack {
-        
+                
+                
+                    
                 VStack(alignment: .center){
                 
                 Text("Completed")
                     Text("\(activeAndCompletedTasks.0)/\(activeAndCompletedTasks.1)")
-                        .font(.custom("Poppins-SemiBold", size: 35, relativeTo: .body))
+                        .font(.custom("Poppins-SemiBold", size: 25, relativeTo: .body))
                     
                 }
-                
                 .foregroundColor(.white)
                 .padding([ .leading, .trailing])
                 
@@ -148,65 +203,36 @@ NavigationView {
                 
                 Text("Collected")
                 Text("$\(userTask)")
-                .font(.custom("Poppins-SemiBold", size: 35, relativeTo: .body))
+                .font(.custom("Poppins-SemiBold", size: 25, relativeTo: .body))
 
                 }
                 .foregroundColor(.white)
                 .padding([ .leading, .trailing])
                 
                 }
-             
-          /*
                 
-            HStack{
-                ZStack(alignment: .center) {
-                Circle()
-                    .stroke(Color(hue: 0.073, saturation: 0.703, brightness: 0.799), lineWidth: 15)
-                    .frame(width: 80, height: 80)
-              
-                
-                Circle()
-                    .trim(from: 0.0, to: userTaskCompleted/userTaskToComplete)
-                    .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color.white)
-
-                    .frame(width: 80, height: 80)
-                    .rotationEffect(Angle(degrees: -90))
-                    
-               
-                    
-                }
-                    
                 Spacer()
-                        .frame(width: 65)
+                    .frame(height: 15)
+                ZStack(alignment: .leading) {
                     
-                ZStack(alignment: .center) {
-                    Circle()
-                        .stroke(Color(hue: 0.073, saturation: 0.703, brightness: 0.799), lineWidth: 15)
-                        .frame(width: 80, height: 80)
-                  
-                    
-                    Circle()
-                        .trim(from: 0.0, to: 0.7)
-                        .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
-                        .foregroundColor(Color.white)
-
-                        .frame(width: 80, height: 80)
-                        .rotationEffect(Angle(degrees: -90))
-                        
-                   
-                        
-                    }
-
-                    
-                }
+                RoundedRectangle(cornerRadius: 20)
+                .frame(width: 270, height: 20)
+                .foregroundColor(Color(red: 0.819, green: 0.508, blue: 0.335))
                 
-                */
+                
+                if activeAndCompleteTasksCGFloat0 != 0.0{
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 270*(activeAndCompleteTasksCGFloat0/activeAndCompleteTasksCGFloat1), height: 20)
+                            .foregroundColor(.white)
+                    
+                    }
+                }
+
             }
             
            
         }
-        .frame(width: 310.0, height: 140)
+        .frame(width: 310.0, height: 150)
         .padding([.leading, .trailing])
         .background(Color(red: 0.997, green: 0.592, blue: 0.378))
         .cornerRadius(15)
@@ -262,6 +288,7 @@ NavigationView {
     .navigationTitle("Profile 👻")
     .font(Font.custom("Poppins", size: 15))
     .onAppear{
+        
         let progressAndTotal = CoreDataManager.shared.getProgressAndTotal()
         
         userProgress = progressAndTotal.0
@@ -275,22 +302,20 @@ NavigationView {
         
     }
     
-   /* .toolbar {
+    .toolbar {
                
         ToolbarItem(placement: .navigationBarTrailing){
-        
-             
-           
+
                 Button(action: {
                     self.showSheetView.toggle()
                 }) {
                     Image(systemName: "person.circle.fill")
                         .foregroundColor(.gray)
                 }.sheet(isPresented: $showSheetView) {
-                        LogInView()
+                        Settings()
                 }
             }
-        } */
+        }
     
     
         }
@@ -301,8 +326,8 @@ NavigationView {
 struct NewProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
-            .preferredColorScheme(.light)
             .previewDevice("iPhone 12")
+           
     }
 }
 

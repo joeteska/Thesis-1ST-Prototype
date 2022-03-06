@@ -16,45 +16,40 @@ struct ContentView: View {
     @State private var myColor =  Color(red: 0.293, green: 0.771, blue: 1.006)
     
     @Environment(\.managedObjectContext) var managedObjectContext
+    
+   
 
     var body: some View {
-       
-    
+        
         
         TabView {
             
             ProfileView()
                 .tabItem {
                     Image(systemName: "person")
-                        .environment(\.symbolVariants, .none)
-                        Text("Profile")
+                    Text("Profile")
+
 
                     }
                       
             GoalsView()
                 .tabItem {
                     Image(systemName: "bookmark")
-                        .environment(\.symbolVariants, .none)
-
-                            Text("Goals")
+                    Text("Goals")
 }
             TasksView()
                 .tabItem {
                     Image(systemName: "doc.plaintext")
-                        .environment(\.symbolVariants, .none)
-
                     Text("Tasks")
                 }
             
-            /*
+            
             VaultsView()
                 .tabItem {
                     Image(systemName: "point.3.connected.trianglepath.dotted")
-                        .environment(\.symbolVariants, .none)
-
                     Text("Vaults")
                 }
-            */
+            
            
             
             
@@ -79,7 +74,8 @@ extension Binding where Value == String {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .previewDevice("iPhone 11")
+            .previewDevice("iPhone 12")
+          
     }
 }
 

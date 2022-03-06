@@ -13,11 +13,17 @@ struct SwiftUIView: View {
     
     var body: some View {
         
-        let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+        let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 5)
         
-         ScrollView {
+        NavigationView {
+            
+            VStack{
+                Text("🚀")
+                    .font(.system(size: 120))
+        
+                ScrollView(.vertical, showsIndicators: false) {
              LazyVGrid(columns: columns) {
-                 ForEach((0...200), id: \.self) {
+                 ForEach((0...70), id: \.self) {
                      let codepoint = $0 + 0x1f600
                      let emoji = String(Character(UnicodeScalar(codepoint)!))
                      Text("\(emoji)")
@@ -26,6 +32,8 @@ struct SwiftUIView: View {
              }.font(.largeTitle)
          }
          }
+            }
+        }
         
         /*
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

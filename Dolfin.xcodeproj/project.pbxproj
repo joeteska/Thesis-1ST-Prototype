@@ -27,7 +27,7 @@
 		6F30F6712788109B00588D29 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F30F6642788109B00588D29 /* Poppins-ExtraLightItalic.ttf */; };
 		6F30F67627887F2300588D29 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F30F67527887F2300588D29 /* LogInView.swift */; };
 		6F436AB8278EB84900B0EDB4 /* NewGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F436AB7278EB84900B0EDB4 /* NewGoalView.swift */; };
-		6F54447E27CBE20C0041D30B /* ProfileSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F54447D27CBE20C0041D30B /* ProfileSettings.swift */; };
+		6F54447E27CBE20C0041D30B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F54447D27CBE20C0041D30B /* Settings.swift */; };
 		6F54448027CC1F760041D30B /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F54447F27CC1F760041D30B /* TasksView.swift */; };
 		6F635D0227A347570092271E /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F635D0127A347570092271E /* NewTaskView.swift */; };
 		6F6D825827BD4F5400ED9CBA /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F30F65A2788109B00588D29 /* Poppins-SemiBold.ttf */; };
@@ -82,7 +82,7 @@
 		6F30F6642788109B00588D29 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		6F30F67527887F2300588D29 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		6F436AB7278EB84900B0EDB4 /* NewGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGoalView.swift; sourceTree = "<group>"; };
-		6F54447D27CBE20C0041D30B /* ProfileSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettings.swift; sourceTree = "<group>"; };
+		6F54447D27CBE20C0041D30B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		6F54447F27CC1F760041D30B /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		6F635D0127A347570092271E /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
 		6F6E500D27CD854200C2FA33 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				6F30F67527887F2300588D29 /* LogInView.swift */,
 				6F1BCEEF27A2CB67007162E8 /* SignUpView.swift */,
 				6F2049AE27A9EA6E00063DC3 /* ItemsView.swift */,
-				6F54447D27CBE20C0041D30B /* ProfileSettings.swift */,
+				6F54447D27CBE20C0041D30B /* Settings.swift */,
 			);
 			path = "Sign in and Log in";
 			sourceTree = "<group>";
@@ -382,7 +382,7 @@
 				6F2049AF27A9EA6E00063DC3 /* ItemsView.swift in Sources */,
 				6F54448027CC1F760041D30B /* TasksView.swift in Sources */,
 				6F635D0227A347570092271E /* NewTaskView.swift in Sources */,
-				6F54447E27CBE20C0041D30B /* ProfileSettings.swift in Sources */,
+				6F54447E27CBE20C0041D30B /* Settings.swift in Sources */,
 				6F436AB8278EB84900B0EDB4 /* NewGoalView.swift in Sources */,
 				6F92EB4E27C67E8A00680743 /* CoreDataManager.swift in Sources */,
 				6FD497A027802070005E01CE /* VaultsView.swift in Sources */,

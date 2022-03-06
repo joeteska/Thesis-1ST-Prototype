@@ -10,9 +10,14 @@ import CoreData
 
 @main
 struct DolfinApp: App {
+    
+    @AppStorage("isDarkMode") private var isDarkMode = false
+
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
         }
     }

@@ -160,5 +160,7 @@ class CoreDataManager {
         return (String(completedTasks), String(tasks.count))
 
     }
+    
+    
 }
 

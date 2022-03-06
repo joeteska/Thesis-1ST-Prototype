@@ -31,7 +31,7 @@ struct TasksView : View {
     
     
     @State var showCompleted = false
-    @State var myColor = Color(red: 0.997, green: 0.383, blue: 0.405) //tint color
+    @State var myColor = Color(red: 0.996, green: 0.593, blue: 0.382) //tint color
     @State var addTask = false
     
     var body: some View {
@@ -45,14 +45,29 @@ struct TasksView : View {
                     Button {
                         showCompleted = false
                     } label: {
+                        if showCompleted == true {
                         Text("Active")
+                            .foregroundColor(.gray)
+                            .opacity(0.3)
+                        }else {
+                            
+                            Text("Active")
+                                .foregroundColor(myColor)
+                        }
                     }
                     Spacer()
                         .frame(width: 200)
                     Button {
                         showCompleted = true
                     } label: {
+                        if showCompleted == false {
                         Text("Completed")
+                            .foregroundColor(.gray)
+                            .opacity(0.3)
+                        }else {
+                            Text("Completed")
+                                .foregroundColor(myColor)
+                        }
                     }
 
                 } .padding(.horizontal)
@@ -186,12 +201,16 @@ struct AddTaskView: View {
     @State var speed = 0.0
     @State private var isEditing = false
     @Binding var addTask: Bool
+    @Environment(\.dismiss) var dismiss
+
     
     let colors = [ "red", "orange", "yellow", "green","blue", "darkBlue"]
 
     var body: some View {
+        
         ZStack{
             
+    
             VStack {
                 
                 Text("Chose an Emoji")
@@ -234,9 +253,9 @@ struct AddTaskView: View {
                         
                     }
                     
-                    
                     Text("Task Progress: ")
                         .foregroundColor(.gray)
+
                     
                     Spacer()
                         .frame(height: 30)
@@ -249,10 +268,21 @@ struct AddTaskView: View {
                         Button {
                             colorSelection = color
                         } label: {
+                            ZStack{
                             Circle()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color(color))
+                            
+                        if colorSelection == color {
+                            Circle()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(.white)
+                                
+                                }
+                            }
+                            
                         }
+                        
                         Spacer()
                     }
                     
@@ -286,7 +316,10 @@ struct AddTaskView: View {
                 .frame(width: 330, height: 550)
                 .background(.white)
                 .cornerRadius(15)
+         
                 .shadow(radius: 25)
+            
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(colorSelection))
