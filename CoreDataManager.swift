@@ -23,6 +23,8 @@ class CoreDataManager {
                 fatalError("Core Data Store Failed \(error.localizedDescription)")
             }
         }
+        
+        
     }
     
     func saveContext() {
@@ -75,8 +77,14 @@ class CoreDataManager {
         saveContext()
     }
 
-    func updateGoal(progress: String, name: String, color: String, emoji: String, goal: String){
+    func updateGoal(progress: String, name: String, color: String, emoji: String, goal: String, goalObject: Goals){
         
+        goalObject.progress = progress
+        goalObject.name = name
+        goalObject.color = color
+        goalObject.emoji = emoji
+        goalObject.goal = goal
+        saveContext()
     }
     
     //progress tab for profile view - goals
@@ -88,8 +96,8 @@ class CoreDataManager {
         var totalGoalAmount = 0
         
         for goal in goals{
-            totalProgressAmount += Int(goal.progress ?? "")!
-            totalGoalAmount += Int(goal.goal ?? "")!
+            totalProgressAmount += Int(goal.progress ?? "") ?? 0
+            totalGoalAmount += Int(goal.goal ?? "") ?? 0
         }
         return (String(totalProgressAmount), String(totalGoalAmount))
     }
@@ -108,7 +116,6 @@ class CoreDataManager {
         return(String(totalTaskAmount))
     }
      
-    
     func saveTask(id: UUID, name: String, color: String, task: String, emoji: String, completed: Bool, date: Date) {
         let myTask = Tasks(context: persistentContainer.viewContext)
         myTask.id = id
@@ -166,5 +173,55 @@ class CoreDataManager {
     }
     
     
+    
+    func saveVault(id: UUID, name: String, color: String, vault: String, emoji: String, date: Date, progress: String, split: String) {
+        let myVault = Vaults(context: persistentContainer.viewContext)
+        myVault.id = id
+        myVault.name = name
+        myVault.color = color
+        myVault.vault = vault
+        myVault.progress = progress
+        myVault.emoji = emoji
+        myVault.date = date
+        myVault.split = split
+        saveContext()
+    }
+    
+    func deleteVaults(vault: Vaults){
+        persistentContainer.viewContext.delete(vault)
+        saveContext()
+    }
+    
+    func getAllVaults() -> [Vaults]{
+        let fetchRequest: NSFetchRequest<Vaults> = Vaults.fetchRequest()
+        
+        do{
+            return try persistentContainer.viewContext.fetch(fetchRequest)
+        }
+        catch{
+            return []
+        }
+    }
+    
+    func deleteAllVaults(){
+        let vaults = getAllVaults()
+        
+        for vault in vaults{
+            persistentContainer.viewContext.delete(vault)
+        }
+        saveContext()
+    }
+    
+    func updateVault(progress: String, name: String, color: String, emoji: String, vault: String, vaultObject: Vaults){
+        vaultObject.progress = progress
+        vaultObject.name = name
+        vaultObject.color = color
+        vaultObject.emoji = emoji
+        vaultObject.vault = vault
+        saveContext()
+    }
+    
+    
 }
+
 

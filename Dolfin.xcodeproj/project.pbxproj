@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D2F82B627D51BBE00403717 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F82B527D51BBE00403717 /* CurrencyManager.swift */; };
 		6D83FD6A27CBC7FA0076322B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D83FD6927CBC7FA0076322B /* Colors.xcassets */; };
 		6F1B354327A1C84C00D2DF91 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B354227A1C84C00D2DF91 /* ProfileView.swift */; };
 		6F1BCEF027A2CB67007162E8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCEEF27A2CB67007162E8 /* SignUpView.swift */; };
@@ -41,7 +42,8 @@
 		6FD49741277C82E6005E01CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FD49740277C82E6005E01CE /* Preview Assets.xcassets */; };
 		6FD4979C27802055005E01CE /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD4979B27802055005E01CE /* GoalsView.swift */; };
 		6FD497A027802070005E01CE /* VaultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD4979F27802070005E01CE /* VaultsView.swift */; };
-		6FDDF0CD27A5A30A006FBFEA /* BalanceEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDF0CC27A5A30A006FBFEA /* BalanceEditView.swift */; };
+		6FF0D43E27D66C5900D219BF /* VaultRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0D43D27D66C5900D219BF /* VaultRateView.swift */; };
+		6FFA559A27F63655008A8C93 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFA559927F63655008A8C93 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D2F82B527D51BBE00403717 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		6D83FD6927CBC7FA0076322B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		6F1B354227A1C84C00D2DF91 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6F1BCEEF27A2CB67007162E8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -97,7 +100,9 @@
 		6FD49750277C82E6005E01CE /* DolfinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DolfinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD4979B27802055005E01CE /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 		6FD4979F27802070005E01CE /* VaultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultsView.swift; sourceTree = "<group>"; };
-		6FDDF0CC27A5A30A006FBFEA /* BalanceEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceEditView.swift; sourceTree = "<group>"; };
+		6FF0D43D27D66C5900D219BF /* VaultRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VaultRateView.swift; path = "Sign in and Log in/VaultRateView.swift"; sourceTree = SOURCE_ROOT; };
+		6FFA559727F63651008A8C93 /* Dolfin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dolfin.entitlements; sourceTree = "<group>"; };
+		6FFA559927F63655008A8C93 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FFA559A27F63655008A8C93 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,10 +142,10 @@
 		6F9E5E6C27A32E2F00CBE0FE /* Sign in and Log in */ = {
 			isa = PBXGroup;
 			children = (
+				6FF0D43D27D66C5900D219BF /* VaultRateView.swift */,
 				6F30F67527887F2300588D29 /* LogInView.swift */,
 				6F1BCEEF27A2CB67007162E8 /* SignUpView.swift */,
 				6F2049AE27A9EA6E00063DC3 /* ItemsView.swift */,
-				6F54447D27CBE20C0041D30B /* Settings.swift */,
 			);
 			path = "Sign in and Log in";
 			sourceTree = "<group>";
@@ -152,7 +158,6 @@
 				6FD4979B27802055005E01CE /* GoalsView.swift */,
 				6F54447F27CC1F760041D30B /* TasksView.swift */,
 				6FD4979F27802070005E01CE /* VaultsView.swift */,
-				6F6E500D27CD854200C2FA33 /* SwiftUIView.swift */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -162,7 +167,7 @@
 			children = (
 				6F436AB7278EB84900B0EDB4 /* NewGoalView.swift */,
 				6F635D0127A347570092271E /* NewTaskView.swift */,
-				6FDDF0CC27A5A30A006FBFEA /* BalanceEditView.swift */,
+				6F6E500D27CD854200C2FA33 /* SwiftUIView.swift */,
 			);
 			path = "Add New Windows";
 			sourceTree = "<group>";
@@ -170,15 +175,19 @@
 		6FD4972D277C82E5005E01CE = {
 			isa = PBXGroup;
 			children = (
+				6FFA559727F63651008A8C93 /* Dolfin.entitlements */,
 				6FD4973B277C82E5005E01CE /* ContentView.swift */,
 				6F92EB4A27C67CF400680743 /* DataModel.xcdatamodeld */,
 				6F92EB4D27C67E8A00680743 /* CoreDataManager.swift */,
+				6D2F82B527D51BBE00403717 /* CurrencyManager.swift */,
+				6F54447D27CBE20C0041D30B /* Settings.swift */,
 				6F9E5E6D27A32E5900CBE0FE /* Main Views */,
 				6F9E5E6E27A32E7400CBE0FE /* Add New Windows */,
-				6F9E5E6C27A32E2F00CBE0FE /* Sign in and Log in */,
 				6FD49738277C82E5005E01CE /* Thesis 1ST Prototype */,
+				6F9E5E6C27A32E2F00CBE0FE /* Sign in and Log in */,
 				6FD49749277C82E6005E01CE /* Thesis 1ST PrototypeTests */,
 				6FD49737277C82E5005E01CE /* Products */,
+				6FFA559827F63655008A8C93 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -223,6 +232,14 @@
 			path = "Thesis 1ST PrototypeTests";
 			sourceTree = "<group>";
 		};
+		6FFA559827F63655008A8C93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6FFA559927F63655008A8C93 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +256,8 @@
 			dependencies = (
 			);
 			name = Dolfin;
+			packageProductDependencies = (
+			);
 			productName = "Thesis 1ST Prototype";
 			productReference = 6FD49736277C82E5005E01CE /* Dolfin.app */;
 			productType = "com.apple.product-type.application";
@@ -311,6 +330,8 @@
 				Base,
 			);
 			mainGroup = 6FD4972D277C82E5005E01CE;
+			packageReferences = (
+			);
 			productRefGroup = 6FD49737277C82E5005E01CE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -378,7 +399,7 @@
 				6F92EB4C27C67CF400680743 /* DataModel.xcdatamodeld in Sources */,
 				6F1B354327A1C84C00D2DF91 /* ProfileView.swift in Sources */,
 				6FD4979C27802055005E01CE /* GoalsView.swift in Sources */,
-				6FDDF0CD27A5A30A006FBFEA /* BalanceEditView.swift in Sources */,
+				6FF0D43E27D66C5900D219BF /* VaultRateView.swift in Sources */,
 				6F2049AF27A9EA6E00063DC3 /* ItemsView.swift in Sources */,
 				6F54448027CC1F760041D30B /* TasksView.swift in Sources */,
 				6F635D0227A347570092271E /* NewTaskView.swift in Sources */,
@@ -386,6 +407,7 @@
 				6F436AB8278EB84900B0EDB4 /* NewGoalView.swift in Sources */,
 				6F92EB4E27C67E8A00680743 /* CoreDataManager.swift in Sources */,
 				6FD497A027802070005E01CE /* VaultsView.swift in Sources */,
+				6D2F82B627D51BBE00403717 /* CurrencyManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +562,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Dolfin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Thesis 1ST Prototype/Preview Content\"";
@@ -573,6 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Dolfin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Thesis 1ST Prototype/Preview Content\"";
