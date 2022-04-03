@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-
-
 struct ItemsView: View {
     
     @State var listItems: [Item] = []
@@ -295,7 +292,6 @@ struct ItemsView: View {
 
     }
 
-
 struct Item: Hashable {
     let name: String
     let color: UIColor
@@ -304,10 +300,481 @@ struct Item: Hashable {
 
 }
 
-
 struct ItemsView_Previews: PreviewProvider {
     static var previews: some View {
         ItemsView()
 
     }
 }
+
+/* Group {
+ 
+ //Goals
+ Group {
+ HStack {
+ 
+     Text("Goals")
+   .foregroundColor(.gray)
+   .fontWeight(.bold)
+   .frame(maxWidth: .infinity, alignment: .leading)
+   .padding(.all)
+
+     
+     Button (action: {
+      print("Continue Button Works")
+  
+      })  {
+  
+      
+          Text("New")
+              .fontWeight(.bold)
+              .foregroundColor(Color(red: 254 / 255, green: 151 / 255, blue: 97 / 255))
+              .frame(maxWidth: .infinity, alignment: .trailing)
+              .padding(.all)
+          
+
+  
+  }
+
+     
+     
+}
+ .padding([.leading, .trailing], 10.0)
+ .padding(.bottom, -25.0)
+ .padding(.top)
+
+     
+ ScrollView(.horizontal, showsIndicators: false) {
+     
+     HStack {
+     
+     VStack{
+         
+         ZStack {
+             
+             Circle()
+                 .frame(width: 70, height: 70)
+                 .foregroundColor(.white)
+                 .shadow(radius: 5)
+                 .padding(.all, 10)
+             Text("🚴")
+                 .font(.system(size: 40))
+
+         }
+         .padding(.all)
+         
+         Text("$200/$300")
+             .bold()
+             .font(.system(size: 12))
+             .padding(.top,-20)
+             .foregroundColor(Color(red: 54 / 255, green: 94 / 255, blue: 125 / 255))
+         
+         ZStack{
+             RoundedRectangle(cornerRadius: 25, style: .continuous)
+                 .fill(Color(red: 0.774, green: 0.744, blue: -0.001))
+                 .frame(width: 90, height: 15)
+
+             RoundedRectangle(cornerRadius: 25, style: .continuous)
+                 .foregroundColor(Color(red: 54 / 255, green: 94 / 255, blue: 125 / 255))
+                 .frame(width: 60, height: 15)
+                 .padding(.leading, -30)
+         
+         
+         }
+         .padding(.bottom, 20)
+         
+         
+         
+         
+     }
+     .background(Color(red: 254 / 255, green: 244 / 255, blue: 97 / 255))
+     .cornerRadius(10)
+     .padding(.leading, 10)
+     
+     VStack{
+         
+         ZStack {
+             
+             Circle()
+                 .frame(width: 70, height: 70)
+                 .foregroundColor(.white)
+                 .shadow(radius: 5)
+                 .padding(.all, 10)
+             Text("🎮")
+                 .font(.system(size: 40))
+
+         }
+         .padding(.all)
+         
+         Text("$200/$300")
+             .bold()
+             .font(.system(size: 12))
+             .padding(.top,-20)
+             .foregroundColor(.white)
+        
+         ZStack{
+         RoundedRectangle(cornerRadius: 25, style: .continuous)
+                 .fill(Color(red: 0.264, green: 0.319, blue: 0.768))
+             .frame(width: 90, height: 15)
+
+             RoundedRectangle(cornerRadius: 25, style: .continuous)
+                 .fill(Color.white)
+                 .frame(width: 60, height: 15)
+                 .padding(.leading, -30)
+         
+         
+         }
+         .padding(.bottom, 20)
+         
+         
+         
+         
+     }
+     .background(Color(red: 96 / 255, green: 112 / 255, blue: 252 / 255))
+     .cornerRadius(10)
+     .padding(.leading, 10)
+         
+     VStack{
+         
+         ZStack {
+             
+             Circle()
+                 .frame(width: 70, height: 70)
+                 .foregroundColor(.white)
+                 .shadow(radius: 5)
+                 .padding(.all, 10)
+             Text("👟")
+                 .font(.system(size: 40))
+
+         }
+         .padding(.all)
+         
+         Text("$200/$300")
+             .bold()
+             .font(.system(size: 12))
+             .padding(.top,-20)
+             .foregroundColor(.white)
+        
+         ZStack{
+         RoundedRectangle(cornerRadius: 25, style: .continuous)
+                 .fill(Color(red: 0.698, green: 0.324, blue: 0.34))
+             .frame(width: 90, height: 15)
+
+             RoundedRectangle(cornerRadius: 25, style: .continuous)
+                 .fill(Color.white)
+                 .frame(width: 60, height: 15)
+                 .padding(.leading, -30)
+         
+         
+         }
+         .padding(.bottom, 20)
+         
+         
+         
+         
+     }
+     .background(Color(red: 254 / 255, green: 97 / 255, blue: 103 / 255))
+     .cornerRadius(10)
+     .padding(.leading, 10)
+
+     }
+     .padding()
+     
+ }
+     
+
+ }
+
+
+ //Tasks
+ Group {
+ 
+ HStack {
+
+ Text("Tasks")
+ .foregroundColor(.gray)
+ .fontWeight(.bold)
+ .frame(maxWidth: .infinity, alignment: .leading)
+ .padding(.all)
+
+ 
+ Button (action: {
+     print("Continue Button Works")
+ 
+     })  {
+ 
+     
+         Text("New")
+             .fontWeight(.bold)
+             .foregroundColor(Color(red: 254 / 255, green: 151 / 255, blue: 97 / 255))
+             .frame(maxWidth: .infinity, alignment: .trailing)
+             .padding(.all)
+         
+
+ 
+ }
+
+ 
+ 
+}
+ .padding([.leading, .trailing], 10.0)
+ .padding(.bottom, -25.0)
+ .padding(.top, -15)
+
+     
+ ScrollView(.horizontal, showsIndicators: false) {
+     
+     HStack {
+         
+         
+     
+     VStack{
+         
+         ZStack {
+             
+             Circle()
+                 .frame(width: 70, height: 70)
+                 .foregroundColor(.white)
+                 .shadow(radius: 5)
+                 .padding(.all, 10)
+             Text("🧼")
+                 .font(.system(size: 40))
+
+         }
+         .padding(.all)
+
+     }
+     .background(Color(red: 0.383, green: 0.746, blue: 0.995))
+     .cornerRadius(10)
+     .padding(.leading, 10)
+         
+         VStack{
+             
+             ZStack {
+                 
+                 Circle()
+                     .frame(width: 70, height: 70)
+                     .foregroundColor(.white)
+                     .shadow(radius: 5)
+                     .padding(.all, 10)
+                 Text("🦮")
+                     .font(.system(size: 40))
+
+             }
+             .padding(.all)
+    
+         }
+         .background(Color(red: 0.997, green: 0.592, blue: 0.378))
+         .cornerRadius(10)
+         .padding(.leading, 10)
+         
+         VStack{
+             
+             ZStack {
+                 
+                 Circle()
+                     .frame(width: 70, height: 70)
+                     .foregroundColor(.white)
+                     .shadow(radius: 5)
+                     .padding(.all, 10)
+                 Text("🔧")
+                     .font(.system(size: 40))
+
+             }
+             .padding(.all)
+    
+         }
+         .background(Color(red: 0.555, green: 0.995, blue: 0.38))
+
+         .cornerRadius(10)
+         .padding(.leading, 10)
+
+     }
+     .padding()
+     
+     
+     
+ }
+     
+
+ }
+ 
+ //Vaults
+ Group {
+ 
+     HStack {
+ 
+     Text("Vaults")
+   .foregroundColor(.gray)
+   .fontWeight(.bold)
+   .frame(maxWidth: .infinity, alignment: .leading)
+   .padding(.all)
+
+     
+     Button (action: {
+      print("Continue Button Works")
+  
+      })  {
+  
+      
+          Text("New")
+              .fontWeight(.bold)
+              .foregroundColor(Color(red: 254 / 255, green: 151 / 255, blue: 97 / 255))
+              .frame(maxWidth: .infinity, alignment: .trailing)
+              .padding(.all)
+          
+
+  
+  }
+
+     
+     
+}
+ .padding([.leading, .trailing], 10.0)
+ .padding(.bottom, -25.0)
+ .padding(.top, -15)
+
+     
+ ScrollView(.horizontal, showsIndicators: false) {
+     
+     HStack {
+     
+     VStack{
+         
+         ZStack {
+             
+             Circle()
+                 .frame(width: 70, height: 70)
+                 .foregroundColor(.white)
+                 .shadow(radius: 5)
+                 .padding(.all, 10)
+             Text("🎄")
+                 .font(.system(size: 40))
+
+         }
+         .padding(.all)
+         
+         Text("Christmas")
+             .fontWeight(.bold)
+             .foregroundColor(.white)
+             .padding(.bottom, 20)
+             .padding(.top, -10)
+     }
+     .background(Color(red: 0.546, green: 0.381, blue: 0.999))
+     .cornerRadius(10)
+     .padding(.leading, 10)
+         
+     VStack{
+         
+         ZStack {
+             
+             Circle()
+                 .frame(width: 70, height: 70)
+                 .foregroundColor(.white)
+                 .shadow(radius: 5)
+                 .padding(.all, 10)
+             Text("✈️")
+                 .font(.system(size: 40))
+
+         }
+         .padding(.all)
+         
+         Text("Trip to NYC")
+             .fontWeight(.bold)
+             .foregroundColor(.white)
+             .padding(.bottom, 20)
+             .padding(.top, -10)
+     }
+     .background(Color(red: 0.997, green: 0.383, blue: 0.547))
+     .cornerRadius(10)
+     .padding(.leading, 10)
+         
+     VStack{
+         
+         ZStack {
+             
+             Circle()
+                 .frame(width: 70, height: 70)
+                 .foregroundColor(.white)
+                 .shadow(radius: 5)
+                 .padding(.all, 10)
+             Text("🎮")
+                 .font(.system(size: 40))
+
+         }
+         .padding(.all)
+         
+         Text("Minecraft Server")
+             .fontWeight(.bold)
+             .font(.system(size: 15))
+             .multilineTextAlignment(.center)
+             .frame(width: 80, height: 50)
+             .foregroundColor(.white)
+             .padding(.bottom, 20)
+             .padding(.top, -40)
+     }
+     .background(Color(red: 0.384, green: 0.706, blue: 0.997))
+     .cornerRadius(10)
+     .padding(.leading, 10)
+        
+     }
+     .padding()
+     
+     
+     
+ }
+     
+
+ }
+ 
+ //Vaults
+ Group {
+ 
+     
+
+     
+ ScrollView(.horizontal, showsIndicators: false) {
+     
+     HStack {
+     
+     VStack{
+         
+         ZStack {
+             
+             Circle()
+                 .frame(width: 70, height: 70)
+                 .foregroundColor(.white)
+                 .shadow(radius: 5)
+                 .padding(.all, 10)
+             Text("🎄")
+                 .font(.system(size: 40))
+
+         }
+         .padding(.all)
+         
+         Text("Christmas")
+             .fontWeight(.bold)
+             .foregroundColor(.white)
+             .padding(.bottom, 20)
+             .padding(.top, -10)
+     }
+     .background(Color(red: 0.546, green: 0.381, blue: 0.999))
+     .cornerRadius(10)
+     .padding(.leading, 10)
+                         
+        
+                         
+     }
+     .background(.orange)
+     .padding()
+     
+     
+     
+ }
+     
+
+ }
+ 
+ 
+ }
+*/
